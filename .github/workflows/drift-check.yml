@@ -55,3 +55,5 @@ jobs:
           else
             gh issue create --title 'Drift check failed: catalog needs regeneration' --body-file /tmp/issue-body.md
           fi
+
+# Trigger GitHub Index
