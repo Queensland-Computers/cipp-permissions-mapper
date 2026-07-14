@@ -11,6 +11,8 @@ usefully - the places where those two disagree. If you've ever built a tiered cu
 granted a permission, watched the page appear, and then watched every button on it return
 403, this catalog exists to tell you which second permission you were missing.
 
+This is a commit test message. 
+
 **The catalog: [`cipp-permissions-catalog.html`](cipp-permissions-catalog.html)** - one
 self-contained page, filterable, with an anchor per permission. GitHub won't render HTML in
 the repo view, so download it, or visit [GitHub Pages Link to Come].
