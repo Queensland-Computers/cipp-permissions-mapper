@@ -1,0 +1,2429 @@
+[
+  {
+    "Category": "CIPP",
+    "Object": "AppSettings",
+    "NavSections": "CIPP > Application Settings | CIPP > Setup Wizard | CIPP > Custom Data",
+    "ReadUsageRefs": "src/pages/tenant/gdap-management/index.js:28",
+    "ReadWriteUsageRefs": "src/components/CippComponents/ForcedSsoMigrationDialog.jsx:32; src/components/CippComponents/SsoMigrationDialog.jsx:29",
+    "NoneUsageRefs": "",
+    "Description": "Global CIPP application configuration: Application Settings, Setup Wizard, Custom Data fields, and SSO configuration dialogs.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecAccessChecks",
+        "ExecBackendURLs",
+        "ExecGDAPTrace",
+        "ExecMaintenanceScripts",
+        "ListExcludedLicenses",
+        "ListNotificationConfig"
+      ],
+      "ReadWrite": [
+        "ExecAddTenant",
+        "ExecAddTrustedIP",
+        "ExecBackupReplicationConfig",
+        "ExecBackupRetentionConfig",
+        "ExecBrandingSettings",
+        "ExecCPVPermissions",
+        "ExecCippLogsSas",
+        "ExecCombinedSetup",
+        "ExecCreateSAMApp",
+        "ExecCustomData",
+        "ExecDeviceCodeLogon",
+        "ExecDurableFunctions",
+        "ExecExchangeRoleRepair",
+        "ExecExcludeLicenses",
+        "ExecExcludeTenant",
+        "ExecFeatureFlag",
+        "ExecJITAdminSettings",
+        "ExecLogRetentionConfig",
+        "ExecNotificationConfig",
+        "ExecPartnerWebhook",
+        "ExecPasswordConfig",
+        "ExecPermissionRepair",
+        "ExecRestoreBackup",
+        "ExecRunBackup",
+        "ExecSAMCertificate",
+        "ExecSSOSetup",
+        "ExecTokenExchange",
+        "ExecUpdateRefreshToken"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "BASELINE_OR_UNCHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "CIPP",
+    "Object": "Backup",
+    "NavSections": "Tenant Administration",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Backup and restore of tenant configuration/standards data (Tenant Administration > Backup).",
+    "BackendFunctions": {
+      "Read": [
+        "ExecListBackup"
+      ],
+      "ReadWrite": [
+        "ExecSetCIPPAutoBackup"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "NO_NAV_OR_COMPONENT_GATE_CHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "CIPP",
+    "Object": "Core",
+    "NavSections": "Dashboard | Tools > Tenant Tools > IP Database | Tools > Dark Web Tools | Tools > Dark Web Tools > Tenant Breach Lookup | Tools > Dark Web Tools > Breach Lookup | Tools > Report Builder | Tools > Template Library | Tools > Community Repositories | CIPP > Logbook",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Baseline CIPP functionality: Dashboard, IP Database, Dark Web breach lookups, Report Builder, Template Library, Community Repositories, and the Logbook (audit trail of CIPP actions). Treated as the app's floor permission - the role editor forces this to at least Read and won't let it be set to None.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecBreachSearch",
+        "ExecGeoIPLookup",
+        "ExecGraphExplorerPreset",
+        "ExecGraphRequestProfile",
+        "ExecLicenseSearch",
+        "ExecMailTest",
+        "ExecMcp",
+        "ExecUniversalSearch",
+        "ExecUniversalSearchV2",
+        "GetCippAlerts",
+        "GetVersion",
+        "ListAdminPortalLicenses",
+        "ListApiTest",
+        "ListBreachesAccount",
+        "ListBreachesTenant",
+        "ListCheckExtAlerts",
+        "ListCippQueue",
+        "ListCommunityRepos",
+        "ListCustomDataMappings",
+        "ListCustomRole",
+        "ListCustomVariables",
+        "ListDBCache",
+        "ListDirectoryObjects",
+        "ListExoRequest",
+        "ListExtensionCacheData",
+        "ListExternalTenantInfo",
+        "ListFeatureFlags",
+        "ListFunctionParameters",
+        "ListFunctionStats",
+        "ListGeneratedReports",
+        "ListGenericTestFunction",
+        "ListGitHubReleaseNotes",
+        "ListGraphBulkRequest",
+        "ListGraphExplorerPresets",
+        "ListGraphRequest",
+        "ListIPWhitelist",
+        "ListKnownIPDb",
+        "ListLogs",
+        "ListOrg",
+        "ListReportBuilderTemplates",
+        "ListSharepointAdminUrl",
+        "ListTenantDetails",
+        "ListTenantGroups",
+        "ListTenants",
+        "invoke-ListEmptyResults"
+      ],
+      "ReadWrite": [
+        "ExecCIPPDBCache",
+        "ExecCPVRefresh",
+        "ExecCloneTemplate",
+        "ExecCommunityRepo",
+        "ExecEditTemplate",
+        "ExecGenerateReportBuilderReport",
+        "ExecListAppId",
+        "ExecReportBuilderTemplate",
+        "ExecSetPackageTag",
+        "ExecUserBookmarks",
+        "ExecUserSettings",
+        "RemoveCippQueue"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/tools/report-builder/generated"
+      ],
+      "BaselineOnlyPages": [
+        "/tools/tenantbreachlookup"
+      ],
+      "Mismatches": [
+        {
+          "Page": "/tenant/tools/geoiplookup",
+          "PageFile": "src/pages/tenant/tools/geoiplookup/index.js:33",
+          "NavPermission": "CIPP.Core.*",
+          "Endpoint": "ExecAddTrustedIP",
+          "Kind": "action",
+          "BackendFunction": "ExecAddTrustedIP",
+          "BackendRole": "CIPP.AppSettings.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/CIPP/Settings/Invoke-ExecAddTrustedIP.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "CIPP",
+    "Object": "Extension",
+    "NavSections": "CIPP > Integrations",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Third-party integration configuration (CIPP > Integrations) - PSA/RMM/webhook connectors and similar extensions.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecExtensionTest",
+        "ListExtensionSync",
+        "ListExtensionsConfig",
+        "ListHaloClients"
+      ],
+      "ReadWrite": [
+        "ExecApiClient",
+        "ExecExtensionClearHIBPKey",
+        "ExecExtensionMapping",
+        "ExecExtensionNinjaOneQueue",
+        "ExecExtensionSync",
+        "ExecExtensionsConfig",
+        "ExecGitHubAction"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "BASELINE_OR_UNCHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "CIPP",
+    "Object": "Scheduler",
+    "NavSections": "Tools | Tools > Scheduler",
+    "ReadUsageRefs": "src/components/CippComponents/CippScheduledTaskActions.jsx:8",
+    "ReadWriteUsageRefs": "src/components/CippComponents/CippScheduledTaskActions.jsx:7; src/components/CippComponents/CippScheduledTaskActions.jsx:8",
+    "NoneUsageRefs": "",
+    "Description": "CIPP's own task scheduler (Tools > Scheduler) - creating, viewing, and managing scheduled automation jobs.",
+    "BackendFunctions": {
+      "Read": [
+        "ListScheduledItemDetails",
+        "ListScheduledItems"
+      ],
+      "ReadWrite": [
+        "AddScheduledItem",
+        "RemoveScheduledItem"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "BASELINE_OR_UNCHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "CIPP",
+    "Object": "SuperAdmin",
+    "NavSections": "CIPP > Advanced | CIPP > Advanced > Super Admin | CIPP > Advanced > Exchange Cmdlets | CIPP > Advanced > Timers | CIPP > Advanced > Table Maintenance | CIPP > Advanced > Diagnostics | CIPP > Advanced > Container Logs | CIPP > Advanced > Worker Health",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Highest-privilege CIPP internals: Super Admin tools, raw Exchange cmdlet execution, background timers, table maintenance, diagnostics, container logs, worker health. Should be reserved for top-tier admins - this is the operational/infrastructure layer of CIPP itself, not tenant management.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecAPIPermissionList",
+        "ExecAppInsightsQuery",
+        "ListCIPPUsers",
+        "ListContainerLogs",
+        "ListDiagnosticsPresets",
+        "ListWorkerHealth"
+      ],
+      "ReadWrite": [
+        "ExecAzBobbyTables",
+        "ExecCIPPUsers",
+        "ExecCippFunction",
+        "ExecContainerManagement",
+        "ExecCustomRole",
+        "ExecDiagnosticsPresets",
+        "ExecOffloadFunctions",
+        "ExecPartnerMode",
+        "ExecSAMAppPermissions",
+        "ExecSAMRoles",
+        "ExecTimeSettings"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/cipp/advanced/table-maintenance",
+        "/cipp/advanced/timers",
+        "/cipp/advanced/worker-health"
+      ],
+      "BaselineOnlyPages": [
+        "/cipp/advanced/exchange-cmdlets"
+      ],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "CIPP",
+    "Object": "Tests",
+    "NavSections": "Tools > Custom Tests",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Custom Tests tool (Tools > Custom Tests) - user-defined validation/test scripts run against tenants.",
+    "BackendFunctions": {
+      "Read": [
+        "ListCustomScripts"
+      ],
+      "ReadWrite": [
+        "AddCustomScript",
+        "ExecCustomScript",
+        "RemoveCustomScript"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/tools/custom-tests"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Endpoint",
+    "Object": "Application",
+    "NavSections": "Intune | Intune > Applications | Intune > Applications > Applications | Intune > Applications > Application Queue | Intune > Applications > Application Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Intune application deployment: Applications list, Application Queue, Application Templates.",
+    "BackendFunctions": {
+      "Read": [
+        "ListAppTemplates",
+        "ListApplicationQueue",
+        "ListApps",
+        "ListAppsRepository",
+        "ListPotentialApps"
+      ],
+      "ReadWrite": [
+        "AddAppTemplate",
+        "AddChocoApp",
+        "AddMSPApp",
+        "AddOfficeApp",
+        "AddStoreApp",
+        "AddWin32ScriptApp",
+        "ExecAppUpload",
+        "ExecAssignApp",
+        "ExecDeployAppTemplate",
+        "ExecSyncVPP",
+        "RemoveApp",
+        "RemoveAppTemplate",
+        "RemoveQueuedApp"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/endpoint/applications/list",
+        "/endpoint/applications/queue",
+        "/endpoint/applications/templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Endpoint",
+    "Object": "Autopilot",
+    "NavSections": "Intune | Intune > Autopilot & Enrollment | Intune > Autopilot & Enrollment > Autopilot Devices | Intune > Autopilot & Enrollment > Add Autopilot Device | Intune > Autopilot & Enrollment > Enrollment Profiles | Intune > Autopilot & Enrollment > Status Pages | Intune > Reports | Intune > Reports > Autopilot Deployments",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Windows Autopilot & enrollment: Autopilot devices, adding devices, enrollment profiles, status pages, and Autopilot deployment reports. One pairing quirk: on the Enrollment Profiles page, the remove-profile and DEP-sync actions run under Endpoint.MEM.ReadWrite, so an Autopilot-only role can view profiles but those two buttons fail - pair with Endpoint.MEM.ReadWrite for full enrollment-profile management.",
+    "BackendFunctions": {
+      "Read": [
+        "ListAPDevices",
+        "ListAndroidEnrollmentProfiles",
+        "ListAppleEnrollmentProfiles",
+        "ListAutopilotconfig"
+      ],
+      "ReadWrite": [
+        "AddAPDevice",
+        "AddAutopilotConfig",
+        "AddEnrollment",
+        "ExecAssignAPDevice",
+        "ExecRenameAPDevice",
+        "ExecSetAPDeviceGroupTag",
+        "ExecSyncAPDevices",
+        "RemoveAPDevice",
+        "RemoveAutopilotConfig"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/endpoint/autopilot/list-devices"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/endpoint/autopilot/enrollment-profiles",
+          "PageFile": "src/pages/endpoint/autopilot/enrollment-profiles/index.js:249",
+          "NavPermission": "Endpoint.Autopilot.*",
+          "Endpoint": "ExecRemoveEnrollmentProfile",
+          "Kind": "action",
+          "BackendFunction": "ExecRemoveEnrollmentProfile",
+          "BackendRole": "Endpoint.MEM.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ExecRemoveEnrollmentProfile.ps1"
+        },
+        {
+          "Page": "/endpoint/autopilot/enrollment-profiles",
+          "PageFile": "src/pages/endpoint/autopilot/enrollment-profiles/index.js:345",
+          "NavPermission": "Endpoint.Autopilot.*",
+          "Endpoint": "ExecSyncDEP",
+          "Kind": "action",
+          "BackendFunction": "ExecSyncDEP",
+          "BackendRole": "Endpoint.MEM.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ExecSyncDEP.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Endpoint",
+    "Object": "Device",
+    "NavSections": "Intune | Intune > Device Management > Devices | Intune > Reports | Intune > Reports > Analytics Device Score | Intune > Reports > Work from anywhere",
+    "ReadUsageRefs": "src/layouts/config.js:535",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Intune-managed device inventory and reporting: Devices list, Analytics Device Score, Work from Anywhere report. (Distinct from Identity.Device, which is Entra's device registration record, not Intune management.)",
+    "BackendFunctions": {
+      "Read": [
+        "ExecBitlockerSearch",
+        "ExecGetLocalAdminPassword",
+        "ExecGetRecoveryKey",
+        "ListAppStatus",
+        "ListDevices"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/endpoint/MEM/devices",
+          "PageFile": "src/pages/endpoint/MEM/devices/index.js:63",
+          "NavPermission": "Endpoint.Device.*",
+          "Endpoint": "ExecSyncDEP",
+          "Kind": "action",
+          "BackendFunction": "ExecSyncDEP",
+          "BackendRole": "Endpoint.MEM.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ExecSyncDEP.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Endpoint",
+    "Object": "MEM",
+    "NavSections": "Intune | Intune > Device Management | Intune > Device Management > Configuration Policies | Intune > Device Management > Compliance Policies | Intune > Device Management > App Policies | Intune > Device Management > Policy Templates | Intune > Device Management > Reusable Settings | Intune > Device Management > Reusable Settings Templates | Intune > Device Management > Assignment Filters | Intune > Device Management > Assignment Filter Templates | Intune > Device Management > Scripts | Intune > Reports | Intune > Reports > Discovered Apps | Tools | Tools > Intune Tools | Tools > Intune Tools > Compare Policies",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/endpoint/MEM/list-appprotection-policies/index.js:12; src/pages/endpoint/MEM/list-compliance-policies/index.js:12; src/pages/endpoint/MEM/list-policies/index.js:13; src/pages/endpoint/MEM/list-templates/index.js:26; src/pages/endpoint/MEM/reusable-settings/index.js:78; src/pages/security/defender/defender-cve-exceptions/index.js:15",
+    "NoneUsageRefs": "",
+    "Description": "Intune policy management broadly: Configuration/Compliance/App Protection policies, policy templates, reusable settings (+ templates), assignment filters (+ templates), scripts, Discovered Apps report, and the Intune policy-compare tool. Also gates the Defender CVE Exceptions page, which is grouped under Intune policy management in code despite living in the Security & Compliance nav section. Two pairing quirks: the template edit/clone/tag actions on the Templates page run under CIPP.Core.ReadWrite (above the CIPP.Core.Read floor every role holds), and the CVE exception add/remove actions run under Security.Alert.ReadWrite.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecCompareIntunePolicy",
+        "ListAppProtectionPolicies",
+        "ListAssignmentFilterTemplates",
+        "ListAssignmentFilters",
+        "ListCompliancePolicies",
+        "ListDefenderState",
+        "ListDefenderTVM",
+        "ListIntuneIntents",
+        "ListIntunePolicy",
+        "ListIntuneReusableSettingTemplates",
+        "ListIntuneReusableSettings",
+        "ListIntuneScript",
+        "ListIntuneTemplates"
+      ],
+      "ReadWrite": [
+        "AddAssignmentFilter",
+        "AddAssignmentFilterTemplate",
+        "AddDefenderDeployment",
+        "AddDefenderTemplate",
+        "AddIntunePolicyClone",
+        "AddIntuneReusableSetting",
+        "AddIntuneReusableSettingTemplate",
+        "AddIntuneTemplate",
+        "AddPolicy",
+        "EditAssignmentFilter",
+        "EditIntunePolicy",
+        "EditIntuneScript",
+        "EditPolicy",
+        "ExecAssignPolicy",
+        "ExecAssignmentFilter",
+        "ExecDeviceAction",
+        "ExecDevicePasscodeAction",
+        "ExecRemoveEnrollmentProfile",
+        "ExecSyncDEP",
+        "RemoveAssignmentFilterTemplate",
+        "RemoveIntuneReusableSetting",
+        "RemoveIntuneReusableSettingTemplate",
+        "RemoveIntuneScript",
+        "RemoveIntuneTemplate",
+        "RemovePolicy"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/endpoint/MEM/assignment-filter-templates",
+        "/endpoint/MEM/assignment-filters",
+        "/endpoint/MEM/list-appprotection-policies",
+        "/endpoint/MEM/list-compliance-policies",
+        "/endpoint/MEM/list-policies",
+        "/endpoint/MEM/list-scripts",
+        "/endpoint/MEM/reusable-settings",
+        "/endpoint/MEM/reusable-settings-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/endpoint/MEM/list-templates",
+          "PageFile": "src/pages/endpoint/MEM/list-templates/index.js:45",
+          "NavPermission": "Endpoint.MEM.*",
+          "Endpoint": "ExecEditTemplate",
+          "Kind": "action",
+          "BackendFunction": "ExecEditTemplate",
+          "BackendRole": "CIPP.Core.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/CIPP/Core/Invoke-ExecEditTemplate.ps1"
+        },
+        {
+          "Page": "/endpoint/MEM/list-templates",
+          "PageFile": "src/pages/endpoint/MEM/list-templates/index.js:72",
+          "NavPermission": "Endpoint.MEM.*",
+          "Endpoint": "ExecCloneTemplate",
+          "Kind": "action",
+          "BackendFunction": "ExecCloneTemplate",
+          "BackendRole": "CIPP.Core.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/CIPP/Core/Invoke-ExecCloneTemplate.ps1"
+        },
+        {
+          "Page": "/endpoint/MEM/list-templates",
+          "PageFile": "src/pages/endpoint/MEM/list-templates/index.js:83",
+          "NavPermission": "Endpoint.MEM.*",
+          "Endpoint": "ExecSetPackageTag",
+          "Kind": "action",
+          "BackendFunction": "ExecSetPackageTag",
+          "BackendRole": "CIPP.Core.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/CIPP/Core/Invoke-ExecSetPackageTag.ps1"
+        },
+        {
+          "Page": "(file-level gate)",
+          "PageFile": "src/pages/security/defender/defender-cve-exceptions/index.js:31",
+          "NavPermission": "Endpoint.MEM.ReadWrite",
+          "Endpoint": "ExecAddCippCveException",
+          "Kind": "action",
+          "BackendFunction": "ExecAddCippCveException",
+          "BackendRole": "Security.Alert.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ExecAddCippCveException.ps1"
+        },
+        {
+          "Page": "(file-level gate)",
+          "PageFile": "src/pages/security/defender/defender-cve-exceptions/index.js:83",
+          "NavPermission": "Endpoint.MEM.ReadWrite",
+          "Endpoint": "ExecRemoveCippCveException",
+          "Kind": "action",
+          "BackendFunction": "ExecRemoveCippCveException",
+          "BackendRole": "Security.Alert.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ExecRemoveCippCveException.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "ConnectionFilter",
+    "NavSections": "Email & Exchange | Email & Exchange > Spamfilter > Connection filter | Email & Exchange > Spamfilter > Connection filter templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Spam filter connection filters and their templates.",
+    "BackendFunctions": {
+      "Read": [
+        "ListConnectionFilter",
+        "ListConnectionFilterTemplates"
+      ],
+      "ReadWrite": [
+        "AddConnectionFilter",
+        "AddConnectionFilterTemplate",
+        "RemoveConnectionfilterTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/spamfilter/list-connectionfilter",
+        "/email/spamfilter/list-connectionfilter-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "Connector",
+    "NavSections": "Email & Exchange | Email & Exchange > Transport > Connectors | Email & Exchange > Transport > Connector Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/email/transport/list-connector-templates/index.js:14; src/pages/email/transport/list-connectors/index.js:8",
+    "NoneUsageRefs": "",
+    "Description": "Exchange mail flow connectors and connector templates.",
+    "BackendFunctions": {
+      "Read": [
+        "ListExConnectorTemplates",
+        "ListExchangeConnectors"
+      ],
+      "ReadWrite": [
+        "AddExConnector",
+        "AddExConnectorTemplate",
+        "EditExConnector",
+        "RemoveExConnector",
+        "RemoveExConnectorTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/transport/list-connector-templates",
+        "/email/transport/list-connectors"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "Contact",
+    "NavSections": "Email & Exchange | Email & Exchange > Administration > Contacts | Email & Exchange > Administration > Contact Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/email/administration/contacts/index.js:11; src/pages/email/administration/contacts-template/index.jsx:13",
+    "NoneUsageRefs": "",
+    "Description": "Mail contacts and contact templates.",
+    "BackendFunctions": {
+      "Read": [
+        "ListContactTemplates",
+        "ListContacts"
+      ],
+      "ReadWrite": [
+        "AddContact",
+        "AddContactTemplates",
+        "DeployContactTemplates",
+        "EditContact",
+        "EditContactTemplates",
+        "RemoveContact",
+        "RemoveContactTemplates"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/administration/contacts",
+        "/email/administration/contacts-template"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "Equipment",
+    "NavSections": "Email & Exchange | Email & Exchange > Resource Management | Email & Exchange > Resource Management > Equipment",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/email/resources/management/equipment/index.js:9",
+    "NoneUsageRefs": "",
+    "Description": "Bookable equipment resource mailboxes.",
+    "BackendFunctions": {
+      "Read": [
+        "ListEquipment"
+      ],
+      "ReadWrite": [
+        "AddEquipmentMailbox",
+        "EditEquipmentMailbox"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/resources/management/equipment"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "Group",
+    "NavSections": "Email & Exchange | Email & Exchange > Reports | Email & Exchange > Reports > Global Address List",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Distribution/mail-enabled group reporting (Global Address List report). The GAL report's data call itself runs under Exchange.Mailbox.Read - grant that alongside, or the page renders but stays empty.",
+    "BackendFunctions": {
+      "Read": [],
+      "ReadWrite": [
+        "ExecGroupsDeliveryManagement",
+        "ExecGroupsHideFromGAL"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/email/reports/global-address-list",
+          "PageFile": "src/pages/email/reports/global-address-list/index.js:69",
+          "NavPermission": "Exchange.Group.*",
+          "Endpoint": "ListGlobalAddressList",
+          "Kind": "read",
+          "BackendFunction": "ListGlobalAddressList",
+          "BackendRole": "Exchange.Mailbox.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Email-Exchange/Reports/Invoke-ListGlobalAddressList.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "Mailbox",
+    "NavSections": "Email & Exchange | Email & Exchange > Administration | Email & Exchange > Administration > Mailboxes | Email & Exchange > Administration > HVE Accounts | Email & Exchange > Administration > Deleted Mailboxes | Email & Exchange > Administration > Mailbox Rules | Email & Exchange > Administration > Restricted Users | Email & Exchange > Reports | Email & Exchange > Reports > Mailbox Statistics | Email & Exchange > Reports > Mailbox Activity | Email & Exchange > Reports > Mailbox Client Access Settings | Email & Exchange > Reports > Mailbox Permissions | Email & Exchange > Reports > Calendar Permissions | Email & Exchange > Reports > Mailbox Forwarding | Email & Exchange > Reports > Shared Mailbox with Enabled Account | Email & Exchange > Reports > ActiveSync Devices | Tools | Tools > Email Tools | Tools > Email Tools > Message Trace | Tools > Email Tools > Message Viewer | Tools > Email Tools > Mailbox Restores",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/components/CippComponents/CippUserActions.jsx:468",
+    "NoneUsageRefs": "",
+    "Description": "Core mailbox administration: mailboxes, High Volume Email (HVE) accounts, deleted mailboxes, mailbox rules, restricted users; plus mailbox reports (statistics, activity, client access, permissions, calendar permissions, forwarding, shared-mailbox-with-enabled-account, ActiveSync devices) and email tools (message trace, message viewer, mailbox restores). One cross-permission quirk: the mailboxes page’s send-push action (ExecSendPush) runs under Identity.User.Read.",
+    "BackendFunctions": {
+      "Read": [
+        "ListActiveSyncDevices",
+        "ListCalendarPermissions",
+        "ListContactPermissions",
+        "ListGlobalAddressList",
+        "ListHVEAccounts",
+        "ListMailboxCAS",
+        "ListMailboxForwarding",
+        "ListMailboxMobileDevices",
+        "ListMailboxRestores",
+        "ListMailboxRules",
+        "ListMailboxes",
+        "ListMessageTrace",
+        "ListOoO",
+        "ListRestrictedUsers",
+        "ListSharedMailboxAccountEnabled",
+        "ListSharedMailboxStatistics",
+        "ListUserMailboxDetails",
+        "ListUserMailboxRules",
+        "ListUserTrustedBlockedSenders",
+        "ListmailboxPermissions"
+      ],
+      "ReadWrite": [
+        "AddSharedMailbox",
+        "ExecConvertMailbox",
+        "ExecCopyForSent",
+        "ExecEditCalendarPermissions",
+        "ExecEditMailboxPermissions",
+        "ExecEmailForward",
+        "ExecEnableArchive",
+        "ExecEnableAutoExpandingArchive",
+        "ExecGroupsDelete",
+        "ExecHVEUser",
+        "ExecHideFromGAL",
+        "ExecMailboxMobileDevices",
+        "ExecMailboxRestore",
+        "ExecModifyCalPerms",
+        "ExecModifyContactPerms",
+        "ExecModifyMBPerms",
+        "ExecRemoveMailboxRule",
+        "ExecRemoveRestrictedUser",
+        "ExecScheduleForwardingVacation",
+        "ExecScheduleMailboxVacation",
+        "ExecScheduleOOOVacation",
+        "ExecSetCASMailbox",
+        "ExecSetCalendarProcessing",
+        "ExecSetLitigationHold",
+        "ExecSetMailboxEmailSize",
+        "ExecSetMailboxLocale",
+        "ExecSetMailboxQuota",
+        "ExecSetMailboxRetentionPolicies",
+        "ExecSetMailboxRule",
+        "ExecSetOoO",
+        "ExecSetRecipientLimits",
+        "ExecSetRetentionHold",
+        "ExecStartManagedFolderAssistant",
+        "RemoveTrustedBlockedSender"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/email/administration/hve-accounts",
+        "/email/administration/mailbox-rules",
+        "/email/administration/restricted-users",
+        "/email/reports/SharedMailboxEnabledAccount",
+        "/email/reports/activesync-devices",
+        "/email/reports/calendar-permissions",
+        "/email/reports/mailbox-cas-settings",
+        "/email/reports/mailbox-forwarding",
+        "/email/reports/mailbox-permissions",
+        "/email/tools/mailbox-restores",
+        "/email/tools/message-trace"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/email/administration/mailboxes",
+          "PageFile": "src/pages/email/administration/mailboxes/index.js:161",
+          "NavPermission": "Exchange.Mailbox.*",
+          "Endpoint": "ExecSendPush",
+          "Kind": "action",
+          "BackendFunction": "ExecSendPush",
+          "BackendRole": "Identity.User.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Identity/Administration/Users/Invoke-ExecSendPush.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "RetentionPolicies",
+    "NavSections": "Email & Exchange | Email & Exchange > Administration > Retention Policies & Tags",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Exchange-level retention policies and retention tags (mailbox retention, not the Purview compliance retention policies - see Security.RetentionCompliancePolicy).",
+    "BackendFunctions": {
+      "Read": [],
+      "ReadWrite": [
+        "ExecManageRetentionPolicies",
+        "ExecManageRetentionTags"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/administration/exchange-retention/policies"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "Room",
+    "NavSections": "Email & Exchange | Email & Exchange > Resource Management > Rooms | Email & Exchange > Resource Management > Room Lists",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/email/resources/management/list-rooms/index.js:9; src/pages/email/resources/management/room-lists/index.js:10",
+    "NoneUsageRefs": "",
+    "Description": "Bookable room resource mailboxes and room lists.",
+    "BackendFunctions": {
+      "Read": [
+        "ListRoomLists",
+        "ListRooms"
+      ],
+      "ReadWrite": [
+        "AddRoomList",
+        "AddRoomMailbox",
+        "EditRoomList",
+        "EditRoomMailbox"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/resources/management/list-rooms",
+        "/email/resources/management/room-lists"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "SafeLinks",
+    "NavSections": "Email & Exchange | Email & Exchange > Reports | Email & Exchange > Reports > Safe Attachments Filters",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Safe Links policy template management: creating, editing, deleting templates and deploying policies from them. Note the split with its sibling permission: the Safe Links pages are made visible by Security.SafeLinksPolicy, but the template management work happens under this permission (and policy edit/delete under Exchange.SpamFilter) - for a role that fully manages Safe Links, grant all three together. The Safe Attachments filter report is separately backed by Exchange.SpamFilter functions.",
+    "BackendFunctions": {
+      "Read": [
+        "ListSafeLinksPolicyTemplateDetails",
+        "ListSafeLinksPolicyTemplates"
+      ],
+      "ReadWrite": [
+        "AddSafeLinksPolicyFromTemplate",
+        "AddSafeLinksPolicyTemplate",
+        "CreateSafeLinksPolicyTemplate",
+        "EditSafeLinksPolicyTemplate",
+        "RemoveSafeLinksPolicyTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/email/reports/safeattachments-filters",
+          "PageFile": "src/pages/email/reports/safeattachments-filters/index.js:7",
+          "NavPermission": "Exchange.SafeLinks.*",
+          "Endpoint": "ListSafeAttachmentsFilters",
+          "Kind": "read",
+          "BackendFunction": "ListSafeAttachmentsFilters",
+          "BackendRole": "Exchange.SpamFilter.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Email-Exchange/Reports/Invoke-ListSafeAttachmentsFilters.ps1"
+        },
+        {
+          "Page": "/email/reports/safeattachments-filters",
+          "PageFile": "src/pages/email/reports/safeattachments-filters/index.js:15",
+          "NavPermission": "Exchange.SafeLinks.*",
+          "Endpoint": "EditSafeAttachmentsFilter",
+          "Kind": "action",
+          "BackendFunction": "EditSafeAttachmentsFilter",
+          "BackendRole": "Exchange.SpamFilter.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Email-Exchange/Spamfilter/Invoke-EditSafeAttachmentsFilter.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "SpamFilter",
+    "NavSections": "Email & Exchange | Email & Exchange > Administration > Quarantine | Email & Exchange > Administration > Tenant Allow/Block Lists | Email & Exchange > Administration > Allow/Block List Templates | Email & Exchange > Spamfilter | Email & Exchange > Spamfilter > Spamfilter | Email & Exchange > Spamfilter > Spamfilter templates | Email & Exchange > Spamfilter > Quarantine Policies | Email & Exchange > Reports | Email & Exchange > Reports > Anti-Phishing Filters | Email & Exchange > Reports > Malware Filters",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/email/administration/tenant-allow-block-lists/index.js:8",
+    "NoneUsageRefs": "",
+    "Description": "Quarantine management, Tenant Allow/Block Lists (+ templates), spam filter policies/templates, quarantine policies, plus anti-phishing and malware filter reports. Also carries Safe Links policy edit/delete. Naming quirk: six write functions on these pages (spam filter template add/remove, quarantine policy add/edit/remove) declare the casing variant 'Exchange.Spamfilter'. Enforcement is case-insensitive, so Exchange.SpamFilter.ReadWrite still grants them - the only impact is that 'Exchange.Spamfilter' appears as a separate object in the role editor and permission listings until the backend .ROLE tags are aligned.",
+    "BackendFunctions": {
+      "Read": [
+        "ListAntiPhishingFilters",
+        "ListMailQuarantine",
+        "ListMailQuarantineMessage",
+        "ListMalwareFilters",
+        "ListQuarantinePolicy",
+        "ListSafeAttachmentsFilters",
+        "ListSafeLinksPolicyDetails",
+        "ListSpamFilterTemplates",
+        "ListSpamfilter",
+        "ListTenantAllowBlockList",
+        "ListTenantAllowBlockListTemplates"
+      ],
+      "ReadWrite": [
+        "AddSpamFilter",
+        "AddTenantAllowBlockList",
+        "AddTenantAllowBlockListTemplate",
+        "EditAntiPhishingFilter",
+        "EditMalwareFilter",
+        "EditSafeAttachmentsFilter",
+        "EditSafeLinksPolicy",
+        "EditSpamFilter",
+        "EditTenantAllowBlockListTemplate",
+        "ExecDeleteSafeLinksPolicy",
+        "ExecNewSafeLinksPolicy",
+        "ExecQuarantineManagement",
+        "RemoveTenantAllowBlockList",
+        "RemoveTenantAllowBlockListTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/administration/quarantine",
+        "/email/administration/tenant-allow-block-list-templates",
+        "/email/administration/tenant-allow-block-lists",
+        "/email/reports/antiphishing-filters",
+        "/email/reports/malware-filters",
+        "/email/spamfilter/list-quarantine-policies",
+        "/email/spamfilter/list-spamfilter",
+        "/email/spamfilter/list-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Exchange",
+    "Object": "TransportRule",
+    "NavSections": "Email & Exchange | Email & Exchange > Transport | Email & Exchange > Transport > Transport rules | Email & Exchange > Transport > Transport Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/email/transport/list-rules/index.js:12; src/pages/email/transport/list-templates/index.js:10",
+    "NoneUsageRefs": "",
+    "Description": "Mail flow transport rules and transport rule templates.",
+    "BackendFunctions": {
+      "Read": [
+        "ListTransportRules",
+        "ListTransportRulesTemplates"
+      ],
+      "ReadWrite": [
+        "AddEditTransportRule",
+        "AddTransportRule",
+        "AddTransportTemplate",
+        "EditTransportRule",
+        "RemoveTransportRule",
+        "RemoveTransportRuleTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/email/transport/list-rules",
+        "/email/transport/list-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Identity",
+    "Object": "AuditLog",
+    "NavSections": "Identity Management > Reports | Tenant Administration | Tenant Administration > Administration > Audit Logs",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Entra ID sign-in/audit log reporting, surfaced both under Identity Management > Reports and Tenant Administration > Audit Logs.",
+    "BackendFunctions": {
+      "Read": [
+        "ListBasicAuth",
+        "ListObjectHistory",
+        "ListSignIns"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "BASELINE_OR_UNCHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Identity",
+    "Object": "Device",
+    "NavSections": "Identity Management > Administration > Devices | Identity Management > Reports",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Entra ID device registration records/reporting (distinct from Endpoint.Device, which is Intune's management view of the same physical devices).",
+    "BackendFunctions": {
+      "Read": [
+        "ListDetectedAppDevices",
+        "ListDetectedApps",
+        "ListDeviceDetails"
+      ],
+      "ReadWrite": [
+        "ExecDeviceDelete"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/identity/administration/devices",
+          "PageFile": "src/pages/identity/administration/devices/index.js:49",
+          "NavPermission": "Identity.Device.*",
+          "Endpoint": "ExecGetRecoveryKey",
+          "Kind": "action",
+          "BackendFunction": "ExecGetRecoveryKey",
+          "BackendRole": "Endpoint.Device.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ExecGetRecoveryKey.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Identity",
+    "Object": "Group",
+    "NavSections": "Identity Management > Administration > Groups | Identity Management > Administration > Group Templates | Identity Management > Reports",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/components/CippComponents/CippUserActions.jsx:469",
+    "NoneUsageRefs": "",
+    "Description": "Entra ID group administration: Groups, Group Templates, and group reporting.",
+    "BackendFunctions": {
+      "Read": [
+        "ListGroupTemplates",
+        "ListGroups"
+      ],
+      "ReadWrite": [
+        "AddGroup",
+        "AddGroupTeam",
+        "AddGroupTemplate",
+        "EditGroup",
+        "RemoveGroupTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/identity/administration/group-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/identity/administration/groups",
+          "PageFile": "src/pages/identity/administration/groups/index.js:59",
+          "NavPermission": "Identity.Group.*",
+          "Endpoint": "ExecGroupsHideFromGAL",
+          "Kind": "action",
+          "BackendFunction": "ExecGroupsHideFromGAL",
+          "BackendRole": "Exchange.Group.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Email-Exchange/Administration/Invoke-ExecGroupsHideFromGAL.ps1"
+        },
+        {
+          "Page": "/identity/administration/groups",
+          "PageFile": "src/pages/identity/administration/groups/index.js:84",
+          "NavPermission": "Identity.Group.*",
+          "Endpoint": "ExecGroupsDeliveryManagement",
+          "Kind": "action",
+          "BackendFunction": "ExecGroupsDeliveryManagement",
+          "BackendRole": "Exchange.Group.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Email-Exchange/Administration/Invoke-ExecGroupsDeliveryManagement.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Identity",
+    "Object": "Role",
+    "NavSections": "Identity Management > Administration > Roles | Identity Management > Administration > JIT Admin | Identity Management > Administration > JIT Admin Templates | Identity Management > Reports",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/identity/administration/roles/index.js:36; src/pages/identity/administration/users/user/index.jsx:91",
+    "NoneUsageRefs": "",
+    "Description": "Entra ID directory role administration, plus CIPP's Just-In-Time (JIT) admin elevation feature and JIT admin templates.",
+    "BackendFunctions": {
+      "Read": [
+        "ListJITAdmin",
+        "ListJITAdminTemplates",
+        "ListRoles"
+      ],
+      "ReadWrite": [
+        "AddJITAdminTemplate",
+        "EditJITAdminTemplate",
+        "ExecJITAdmin",
+        "ExecRemoveAdminRole",
+        "RemoveJITAdminTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/identity/administration/jit-admin",
+        "/identity/administration/jit-admin-templates",
+        "/identity/administration/roles"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Identity",
+    "Object": "User",
+    "NavSections": "Identity Management > Administration | Identity Management > Administration > Users | Identity Management > Administration > Risky Users | Identity Management > Administration > Deleted Items | Identity Management > Administration > Vacation Mode | Identity Management > Administration > Offboarding Wizard | Identity Management > Reports | Identity Management > Reports > MFA Report | Identity Management > Reports > Inactive Users | Identity Management > Reports > Sign-in Report | Identity Management > Reports > Microsoft Entra Connect Report | Identity Management > Reports > Risk Detections",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/components/CippComponents/CippUserActions.jsx:467; src/pages/identity/administration/users/index.js:17",
+    "NoneUsageRefs": "",
+    "Description": "Core user lifecycle management: Users, Risky Users, Deleted Items, Vacation Mode, Offboarding Wizard; plus user-centric reports (MFA, inactive users, sign-in, Entra Connect, risk detections). This is the single largest and most frequently touched permission for technician-tier roles.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecBECCheck",
+        "ExecSendPush",
+        "ListMFAUsers",
+        "ListNewUserDefaults",
+        "ListPerUserMFA",
+        "ListUserConditionalAccessPolicies",
+        "ListUserCounts",
+        "ListUserDevices",
+        "ListUserGroups",
+        "ListUserPhoto",
+        "ListUserSettings",
+        "ListUserSigninLogs",
+        "ListUsers"
+      ],
+      "ReadWrite": [
+        "AddGuest",
+        "AddUser",
+        "AddUserBulk",
+        "AddUserDefaults",
+        "EditUser",
+        "EditUserAliases",
+        "ExecBECRemediate",
+        "ExecBulkLicense",
+        "ExecClrImmId",
+        "ExecCreateTAP",
+        "ExecDisableUser",
+        "ExecDismissRiskyUser",
+        "ExecOffboardUser",
+        "ExecOneDriveProvision",
+        "ExecOneDriveShortCut",
+        "ExecPasswordNeverExpires",
+        "ExecPerUserMFA",
+        "ExecReprocessUserLicenses",
+        "ExecResetMFA",
+        "ExecResetPass",
+        "ExecRevokeSessions",
+        "ExecSetUserPhoto",
+        "PatchUser",
+        "RemoveUser",
+        "RemoveUserDefaultTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/identity/administration/risky-users",
+        "/identity/reports/mfa-report"
+      ],
+      "BaselineOnlyPages": [
+        "/identity/reports/signin-report"
+      ],
+      "Mismatches": [
+        {
+          "Page": "/identity/administration/deleted-items",
+          "PageFile": "src/pages/identity/administration/deleted-items/index.js:13",
+          "NavPermission": "Identity.User.*",
+          "Endpoint": "ExecRestoreDeleted",
+          "Kind": "action",
+          "BackendFunction": "ExecRestoreDeleted",
+          "BackendRole": "Tenant.Directory.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Identity/Administration/Users/Invoke-ExecRestoreDeleted.ps1"
+        },
+        {
+          "Page": "/identity/administration/deleted-items",
+          "PageFile": "src/pages/identity/administration/deleted-items/index.js:22",
+          "NavPermission": "Identity.User.*",
+          "Endpoint": "RemoveDeletedObject",
+          "Kind": "action",
+          "BackendFunction": "RemoveDeletedObject",
+          "BackendRole": "Tenant.Directory.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Identity/Administration/Users/Invoke-RemoveDeletedObject.ps1"
+        },
+        {
+          "Page": "/identity/administration/deleted-items",
+          "PageFile": "src/pages/identity/administration/deleted-items/index.js:60",
+          "NavPermission": "Identity.User.*",
+          "Endpoint": "ListDeletedItems",
+          "Kind": "read",
+          "BackendFunction": "ListDeletedItems",
+          "BackendRole": "Tenant.Directory.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Identity/Administration/Users/Invoke-ListDeletedItems.ps1"
+        },
+        {
+          "Page": "/identity/reports/inactive-users-report",
+          "PageFile": "src/pages/identity/reports/inactive-users-report/index.js:11",
+          "NavPermission": "Identity.User.*",
+          "Endpoint": "ListInactiveAccounts",
+          "Kind": "read",
+          "BackendFunction": "ListInactiveAccounts",
+          "BackendRole": "Tenant.Directory.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Identity/Reports/Invoke-ListInactiveAccounts.ps1"
+        },
+        {
+          "Page": "/identity/reports/azure-ad-connect-report",
+          "PageFile": "src/pages/identity/reports/azure-ad-connect-report/index.js:11",
+          "NavPermission": "Identity.User.*",
+          "Endpoint": "ListAzureADConnectStatus",
+          "Kind": "read",
+          "BackendFunction": "ListAzureADConnectStatus",
+          "BackendRole": "Tenant.Directory.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Identity/Reports/Invoke-ListAzureADConnectStatus.ps1"
+        },
+        {
+          "Page": "(shared component)",
+          "PageFile": "src/components/CippComponents/CippUserActions.jsx:776",
+          "NavPermission": "Identity.User.ReadWrite",
+          "Endpoint": "ExecSetOneDriveSharing",
+          "Kind": "action",
+          "BackendFunction": "ExecSetOneDriveSharing",
+          "BackendRole": "Teams.SharePoint.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecSetOneDriveSharing.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Scheduler",
+    "Object": "Billing",
+    "NavSections": "Tenant Administration | Tenant Administration > Reports",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Partner billing sync automation: triggers scheduled billing runs against configured PSA/billing integrations (e.g. Gradient). API-only - invoked by CIPP's internal scheduler rather than any user-facing page, so it has no meaningful UI surface. Only relevant for API-client roles or roles that manage billing extension automation.",
+    "BackendFunctions": {
+      "Read": [],
+      "ReadWrite": [
+        "ExecSchedulerBillingRun"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "NO_NAV_OR_COMPONENT_GATE_CHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "Alert",
+    "NavSections": "Security & Compliance | Security & Compliance > Incidents & Alerts > Alerts | Security & Compliance > Incidents & Alerts > MDO Alerts | Security & Compliance > Incidents & Alerts > Check Alerts | Security & Compliance > Defender | Security & Compliance > Defender > Defender Status | Security & Compliance > Defender > Defender Deployment | Security & Compliance > Defender > Vulnerabilities | Security & Compliance > Defender > CVE Management",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Microsoft Defender alert triage: listing and updating security alerts, MDO alert data, and CVE exception actions. Caution for role design: the Defender pages this permission makes visible (Defender Status, Defender Deployment, Vulnerabilities, CVE Management) fetch their data under different permissions - pair with Endpoint.MEM.Read for the Defender/vulnerability pages (ReadWrite for deployment), Endpoint.Security.Read for the CVE list, and Security.Incident.ReadWrite for MDO alert triage. Granting Security.Alert alone shows these pages but their data calls fail.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecAlertsList",
+        "ExecMDOAlertsList"
+      ],
+      "ReadWrite": [
+        "ExecAddCippCveException",
+        "ExecRemoveCippCveException",
+        "ExecSetSecurityAlert"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/security/incidents/list-alerts"
+      ],
+      "BaselineOnlyPages": [
+        "/security/incidents/list-check-alerts"
+      ],
+      "Mismatches": [
+        {
+          "Page": "/security/incidents/list-mdo-alerts",
+          "PageFile": "src/pages/security/incidents/list-mdo-alerts/index.js:14",
+          "NavPermission": "Security.Alert.*",
+          "Endpoint": "ExecSetMdoAlert",
+          "Kind": "action",
+          "BackendFunction": "ExecSetMdoAlert",
+          "BackendRole": "Security.Incident.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Security/Invoke-ExecSetMdoAlert.ps1"
+        },
+        {
+          "Page": "/security/defender/list-defender",
+          "PageFile": "src/pages/security/defender/list-defender/index.js:10",
+          "NavPermission": "Security.Alert.*",
+          "Endpoint": "ListDefenderState",
+          "Kind": "read",
+          "BackendFunction": "ListDefenderState",
+          "BackendRole": "Endpoint.MEM.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ListDefenderState.ps1"
+        },
+        {
+          "Page": "/security/defender/deployment",
+          "PageFile": "src/pages/security/defender/deployment/index.js:988",
+          "NavPermission": "Security.Alert.*",
+          "Endpoint": "AddDefenderTemplate",
+          "Kind": "action",
+          "BackendFunction": "AddDefenderTemplate",
+          "BackendRole": "Endpoint.MEM.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-AddDefenderTemplate.ps1"
+        },
+        {
+          "Page": "/security/defender/list-defender-tvm",
+          "PageFile": "src/pages/security/defender/list-defender-tvm/index.js:10",
+          "NavPermission": "Security.Alert.*",
+          "Endpoint": "ListDefenderTVM",
+          "Kind": "read",
+          "BackendFunction": "ListDefenderTVM",
+          "BackendRole": "Endpoint.MEM.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ListDefenderTVM.ps1"
+        },
+        {
+          "Page": "/security/defender/defender-cve-exceptions",
+          "PageFile": "src/pages/security/defender/defender-cve-exceptions/index.js:170",
+          "NavPermission": "Security.Alert.*",
+          "Endpoint": "ListCVEManagement",
+          "Kind": "read",
+          "BackendFunction": "ListCVEManagement",
+          "BackendRole": "Endpoint.Security.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ListCVEManagement.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "Defender",
+    "NavSections": "Security & Compliance > Reports | Security & Compliance > Reports > MDE Onboarding | Security & Compliance > Reports > Vulnerability Report",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Defender-for-Endpoint reporting: MDE onboarding status and vulnerability report (read-oriented, distinct from Security.Alert's action-oriented alert triage).",
+    "BackendFunctions": {
+      "Read": [
+        "ListMDEOnboarding"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/security/reports/mde-onboarding"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/security/reports/cve-report",
+          "PageFile": "src/pages/security/reports/cve-report/index.js:8",
+          "NavPermission": "Security.Defender.*",
+          "Endpoint": "ListCveManagement",
+          "Kind": "read",
+          "BackendFunction": "ListCVEManagement",
+          "BackendRole": "Endpoint.Security.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Endpoint/MEM/Invoke-ListCVEManagement.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "DlpCompliancePolicy",
+    "NavSections": "Security & Compliance | Security & Compliance > Purview Compliance | Security & Compliance > Purview Compliance > DLP Policies | Security & Compliance > Purview Compliance > DLP Policy Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/security/compliance/dlp/index.js:13; src/pages/security/compliance/dlp-templates/index.js:12",
+    "NoneUsageRefs": "",
+    "Description": "Microsoft Purview Data Loss Prevention (DLP) policies and DLP policy templates.",
+    "BackendFunctions": {
+      "Read": [
+        "ListDlpCompliancePolicy",
+        "ListDlpCompliancePolicyTemplates"
+      ],
+      "ReadWrite": [
+        "AddDlpCompliancePolicy",
+        "AddDlpCompliancePolicyTemplate",
+        "EditDlpCompliancePolicy",
+        "RemoveDlpCompliancePolicy",
+        "RemoveDlpCompliancePolicyTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/security/compliance/dlp",
+        "/security/compliance/dlp-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "Incident",
+    "NavSections": "Security & Compliance | Security & Compliance > Incidents & Alerts | Security & Compliance > Incidents & Alerts > Incidents",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Microsoft Defender/Purview security incidents list.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecIncidentsList"
+      ],
+      "ReadWrite": [
+        "ExecSetMdoAlert",
+        "ExecSetSecurityIncident"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/security/incidents/list-incidents"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "RetentionCompliancePolicy",
+    "NavSections": "Security & Compliance | Security & Compliance > Purview Compliance | Security & Compliance > Purview Compliance > Retention Policies | Security & Compliance > Purview Compliance > Retention Policy Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/security/compliance/retention/index.js:13; src/pages/security/compliance/retention-templates/index.js:12",
+    "NoneUsageRefs": "",
+    "Description": "Microsoft Purview compliance retention policies and templates (organization-wide compliance retention, not Exchange mailbox retention tags - see Exchange.RetentionPolicies).",
+    "BackendFunctions": {
+      "Read": [
+        "ListRetentionCompliancePolicy",
+        "ListRetentionCompliancePolicyTemplates"
+      ],
+      "ReadWrite": [
+        "AddRetentionCompliancePolicy",
+        "AddRetentionCompliancePolicyTemplate",
+        "EditRetentionCompliancePolicy",
+        "RemoveRetentionCompliancePolicy",
+        "RemoveRetentionCompliancePolicyTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/security/compliance/retention",
+        "/security/compliance/retention-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "SafeLinksPolicy",
+    "NavSections": "Security & Compliance | Security & Compliance > Safe Links | Security & Compliance > Safe Links > Safe Links Policies | Security & Compliance > Safe Links > Safe Links Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Visibility and read access for the Safe Links pages (Safe Links Policies, Safe Links Templates). Largely a view-only permission: it has no write-level backend functions of its own. The actual management work on those pages requires Exchange.SpamFilter.ReadWrite (policy edit/delete) and Exchange.SafeLinks.ReadWrite (template management) - grant all three together for working Safe Links administration.",
+    "BackendFunctions": {
+      "Read": [
+        "ListSafeLinksPolicy"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/security/safelinks/safelinks",
+          "PageFile": "src/pages/security/safelinks/safelinks/index.jsx:37",
+          "NavPermission": "Security.SafeLinksPolicy.*",
+          "Endpoint": "EditSafeLinksPolicy",
+          "Kind": "action",
+          "BackendFunction": "EditSafeLinksPolicy",
+          "BackendRole": "Exchange.SpamFilter.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Security/Safe-Links-Policy/Invoke-EditSafeLinksPolicy.ps1"
+        },
+        {
+          "Page": "/security/safelinks/safelinks",
+          "PageFile": "src/pages/security/safelinks/safelinks/index.jsx:93",
+          "NavPermission": "Security.SafeLinksPolicy.*",
+          "Endpoint": "AddSafeLinksPolicyTemplate",
+          "Kind": "action",
+          "BackendFunction": "AddSafeLinksPolicyTemplate",
+          "BackendRole": "Exchange.SafeLinks.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Security/Safe-Links-Policy/Invoke-AddSafeLinksPolicyTemplate.ps1"
+        },
+        {
+          "Page": "/security/safelinks/safelinks",
+          "PageFile": "src/pages/security/safelinks/safelinks/index.jsx:104",
+          "NavPermission": "Security.SafeLinksPolicy.*",
+          "Endpoint": "ExecDeleteSafeLinksPolicy",
+          "Kind": "action",
+          "BackendFunction": "ExecDeleteSafeLinksPolicy",
+          "BackendRole": "Exchange.SpamFilter.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Security/Safe-Links-Policy/Invoke-ExecDeleteSafeLinksPolicy.ps1"
+        },
+        {
+          "Page": "/security/safelinks/safelinks-template",
+          "PageFile": "src/pages/security/safelinks/safelinks-template/index.jsx:75",
+          "NavPermission": "Security.SafeLinksPolicy.*",
+          "Endpoint": "RemoveSafeLinksPolicyTemplate",
+          "Kind": "action",
+          "BackendFunction": "RemoveSafeLinksPolicyTemplate",
+          "BackendRole": "Exchange.SafeLinks.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Security/Safe-Links-Policy/Invoke-RemoveSafeLinksPolicyTemplate.ps1"
+        },
+        {
+          "Page": "/security/safelinks/safelinks-template",
+          "PageFile": "src/pages/security/safelinks/safelinks-template/index.jsx:93",
+          "NavPermission": "Security.SafeLinksPolicy.*",
+          "Endpoint": "ListSafeLinksPolicyTemplates",
+          "Kind": "read",
+          "BackendFunction": "ListSafeLinksPolicyTemplates",
+          "BackendRole": "Exchange.SafeLinks.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Security/Safe-Links-Policy/Invoke-ListSafeLinksPolicyTemplates.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "SensitiveInfoType",
+    "NavSections": "Security & Compliance | Security & Compliance > Purview Compliance | Security & Compliance > Purview Compliance > Sensitive Information Types | Security & Compliance > Purview Compliance > Sensitive Info Type Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/security/compliance/sit/index.js:14; src/pages/security/compliance/sit-templates/index.js:13",
+    "NoneUsageRefs": "",
+    "Description": "Purview Sensitive Information Type definitions and templates (used by DLP/labels to detect PII, credit cards, etc.).",
+    "BackendFunctions": {
+      "Read": [
+        "ListSensitiveInfoType",
+        "ListSensitiveInfoTypeRulePackage",
+        "ListSensitiveInfoTypeTemplates"
+      ],
+      "ReadWrite": [
+        "AddSensitiveInfoType",
+        "AddSensitiveInfoTypeTemplate",
+        "EditSensitiveInfoType",
+        "RemoveSensitiveInfoType",
+        "RemoveSensitiveInfoTypeTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/security/compliance/sit",
+        "/security/compliance/sit-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Security",
+    "Object": "SensitivityLabel",
+    "NavSections": "Security & Compliance | Security & Compliance > Purview Compliance | Security & Compliance > Purview Compliance > Sensitivity Labels | Security & Compliance > Purview Compliance > Sensitivity Label Templates",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/security/compliance/labels/index.js:13; src/pages/security/compliance/labels-templates/index.js:12",
+    "NoneUsageRefs": "",
+    "Description": "Purview Sensitivity Labels and label templates (classification/protection labels for documents and emails).",
+    "BackendFunctions": {
+      "Read": [
+        "ListSensitivityLabel",
+        "ListSensitivityLabelTemplates"
+      ],
+      "ReadWrite": [
+        "AddSensitivityLabel",
+        "AddSensitivityLabelTemplate",
+        "EditSensitivityLabel",
+        "RemoveSensitivityLabel",
+        "RemoveSensitivityLabelTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/security/compliance/labels",
+        "/security/compliance/labels-templates"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Sharepoint",
+    "Object": "Admin",
+    "NavSections": "Teams & SharePoint | Teams & SharePoint > SharePoint | Teams & SharePoint > Deleted Sites",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "SharePoint tenant-level settings and quota visibility, and nav access to the SharePoint and Deleted Sites pages. View-only in practice: it has no write-level backend functions, and everything you can do on those pages (site membership/permissions, deletion, deleted-site restore) runs under Sharepoint.Site. Grant Sharepoint.Site at the intended level alongside it, or the pages render but nothing works.",
+    "BackendFunctions": {
+      "Read": [
+        "ListSharepointQuota",
+        "ListSharepointSettings"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/teams-share/sharepoint",
+          "PageFile": "src/pages/teams-share/sharepoint/index.js:154",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ExecSetSharePointMember",
+          "Kind": "action",
+          "BackendFunction": "ExecSetSharePointMember",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecSetSharePointMember.ps1"
+        },
+        {
+          "Page": "/teams-share/sharepoint",
+          "PageFile": "src/pages/teams-share/sharepoint/index.js:268",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ExecRemoveSiteUser",
+          "Kind": "action",
+          "BackendFunction": "ExecRemoveSiteUser",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecRemoveSiteUser.ps1"
+        },
+        {
+          "Page": "/teams-share/sharepoint",
+          "PageFile": "src/pages/teams-share/sharepoint/index.js:320",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ExecBulkRemoveSharingLinks",
+          "Kind": "action",
+          "BackendFunction": "ExecBulkRemoveSharingLinks",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecBulkRemoveSharingLinks.ps1"
+        },
+        {
+          "Page": "/teams-share/sharepoint",
+          "PageFile": "src/pages/teams-share/sharepoint/index.js:348",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ExecSetSiteProperties",
+          "Kind": "action",
+          "BackendFunction": "ExecSetSiteProperties",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecSetSiteProperties.ps1"
+        },
+        {
+          "Page": "/teams-share/sharepoint",
+          "PageFile": "src/pages/teams-share/sharepoint/index.js:486",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ExecSetLibraryPermission",
+          "Kind": "action",
+          "BackendFunction": "ExecSetLibraryPermission",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecSetLibraryPermission.ps1"
+        },
+        {
+          "Page": "/teams-share/sharepoint",
+          "PageFile": "src/pages/teams-share/sharepoint/index.js:605",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "DeleteSharepointSite",
+          "Kind": "action",
+          "BackendFunction": "DeleteSharepointSite",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-DeleteSharepointSite.ps1"
+        },
+        {
+          "Page": "/teams-share/sharepoint",
+          "PageFile": "src/pages/teams-share/sharepoint/index.js:634",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ExecSPOVersionCleanup",
+          "Kind": "action",
+          "BackendFunction": "ExecSPOVersionCleanup",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecSPOVersionCleanup.ps1"
+        },
+        {
+          "Page": "/teams-share/deleted-sites",
+          "PageFile": "src/pages/teams-share/deleted-sites.js:15",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ExecRestoreDeletedSite",
+          "Kind": "action",
+          "BackendFunction": "ExecRestoreDeletedSite",
+          "BackendRole": "Sharepoint.Site.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ExecRestoreDeletedSite.ps1"
+        },
+        {
+          "Page": "/teams-share/deleted-sites",
+          "PageFile": "src/pages/teams-share/deleted-sites.js:29",
+          "NavPermission": "Sharepoint.Admin.*",
+          "Endpoint": "ListDeletedSites",
+          "Kind": "read",
+          "BackendFunction": "ListDeletedSites",
+          "BackendRole": "Sharepoint.Site.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Teams-Sharepoint/Invoke-ListDeletedSites.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Sharepoint",
+    "Object": "Site",
+    "NavSections": "Teams & SharePoint | Teams & SharePoint > OneDrive | Teams & SharePoint > Sharing Report | Teams & SharePoint > External Users",
+    "ReadUsageRefs": "src/pages/teams-share/sharepoint/index.js:133",
+    "ReadWriteUsageRefs": "src/pages/teams-share/deleted-sites.js:8; src/pages/teams-share/external-users.js:16; src/pages/teams-share/sharepoint/index.js:132; src/pages/teams-share/sharepoint/index.js:133",
+    "NoneUsageRefs": "",
+    "Description": "OneDrive administration, Sharing Report, External Users report, and general SharePoint site listing/actions.",
+    "BackendFunctions": {
+      "Read": [
+        "ListDeletedSites",
+        "ListSPOVersionCleanup",
+        "ListSharePointExternalUsers",
+        "ListSharePointSharing",
+        "ListSiteLibraries",
+        "ListSiteMembers",
+        "ListSiteProperties",
+        "ListSites"
+      ],
+      "ReadWrite": [
+        "AddSite",
+        "AddSiteBulk",
+        "DeleteSharepointSite",
+        "ExecBulkRemoveSharingLinks",
+        "ExecRemoveSPOExternalUser",
+        "ExecRemoveSharingLink",
+        "ExecRemoveSiteUser",
+        "ExecRestoreDeletedSite",
+        "ExecSPOVersionCleanup",
+        "ExecSetLibraryPermission",
+        "ExecSetSharePointMember",
+        "ExecSetSiteProperties",
+        "ExecSharePointPerms"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/teams-share/external-users",
+        "/teams-share/sharing-report"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Sharepoint",
+    "Object": "SiteRecycleBin",
+    "NavSections": "",
+    "ReadUsageRefs": "src/pages/teams-share/sharepoint/index.js:135",
+    "ReadWriteUsageRefs": "src/components/CippComponents/CippSiteRecycleBinDialog.jsx:18; src/pages/teams-share/sharepoint/index.js:136",
+    "NoneUsageRefs": "",
+    "Description": "Per-site recycle bin restore actions (no dedicated nav entry found - surfaced as an action/dialog from within the Sites page rather than its own menu item).",
+    "BackendFunctions": {
+      "Read": [
+        "ListSiteRecycleBin"
+      ],
+      "ReadWrite": [
+        "ExecRestoreRecycleBinItems"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "NO_NAV_OR_COMPONENT_GATE_CHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Teams",
+    "Object": "Activity",
+    "NavSections": "Teams & SharePoint | Teams & SharePoint > Teams > Teams Activity",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Microsoft Teams activity reporting.",
+    "BackendFunctions": {
+      "Read": [
+        "ListTeamsActivity"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/teams-share/teams/teams-activity"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Teams",
+    "Object": "Group",
+    "NavSections": "Teams & SharePoint | Teams & SharePoint > Teams | Teams & SharePoint > Teams > Teams",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Microsoft Teams team listing and management.",
+    "BackendFunctions": {
+      "Read": [
+        "ListTeams"
+      ],
+      "ReadWrite": [
+        "AddTeam"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/teams-share/teams/list-team"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Teams",
+    "Object": "Voice",
+    "NavSections": "Teams & SharePoint | Teams & SharePoint > Teams > Business Voice",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Teams Phone/Business Voice configuration.",
+    "BackendFunctions": {
+      "Read": [
+        "ListTeamsLisLocation",
+        "ListTeamsVoice"
+      ],
+      "ReadWrite": [
+        "ExecRemoveTeamsVoicePhoneNumberAssignment",
+        "ExecTeamsVoicePhoneNumberAssignment"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/teams-share/teams/business-voice"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Administration",
+    "NavSections": "Tenant Administration > Administration | Tenant Administration > Administration > Tenants | Tenant Administration > Administration > Secure Score | Tenant Administration > Administration > Domains | Tenant Administration > Reports | Tenant Administration > Reports > Licence Report | Tenant Administration > Manage Tenant | Tools | Tools > Tenant Tools | Tools > Tenant Tools > Graph Explorer | Tools > Tenant Tools > Tenant Lookup",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/tenant/administration/domains/index.js:77",
+    "NoneUsageRefs": "",
+    "Description": "Core MSP tenant administration: Tenants list, Secure Score, Domains, Licence Report, Manage Tenant, plus the Graph Explorer and Tenant Lookup tools. This is the broad \"can operate CIPP against a tenant at all\" permission alongside Identity.User.",
+    "BackendFunctions": {
+      "Read": [
+        "ListAppConsentRequests",
+        "ListDomains",
+        "ListServiceHealth",
+        "ListTenantOnboarding"
+      ],
+      "ReadWrite": [
+        "AddDomain",
+        "ExecAddSPN",
+        "ExecDomainAction",
+        "ExecOffboardTenant",
+        "ExecOnboardTenant",
+        "ExecRemoveTenant",
+        "ExecUpdateSecureScore",
+        "ListOffboardTenants",
+        "RemoveTenantCapabilitiesCache",
+        "SetAuthMethod"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/tenant/administration/domains",
+        "/tenant/administration/securescore",
+        "/tenant/administration/tenants"
+      ],
+      "BaselineOnlyPages": [
+        "/tenant/manage/edit",
+        "/tenant/tools/graph-explorer"
+      ],
+      "Mismatches": [
+        {
+          "Page": "/tenant/reports/list-licenses",
+          "PageFile": "src/pages/tenant/reports/list-licenses/index.js:10",
+          "NavPermission": "Tenant.Administration.*",
+          "Endpoint": "ListLicensesReport",
+          "Kind": "read",
+          "BackendFunction": "ListLicensesReport",
+          "BackendRole": "Tenant.Directory.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Tenant/Reports/Invoke-ListLicensesReport.ps1"
+        },
+        {
+          "Page": "/tenant/reports/list-licenses",
+          "PageFile": "src/pages/tenant/reports/list-licenses/index.js:40",
+          "NavPermission": "Tenant.Administration.*",
+          "Endpoint": "ExecBulkLicense",
+          "Kind": "action",
+          "BackendFunction": "ExecBulkLicense",
+          "BackendRole": "Identity.User.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Identity/Administration/Users/Invoke-ExecBulkLicense.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Alert",
+    "NavSections": "Tenant Administration > Administration > Alert Configuration",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "CIPP's audit-log alerting plumbing: audit log searches, coverage, and webhook subscriptions. Makes the Alert Configuration page visible, but that page's actual alert queue and add/remove actions run under a backend-only permission (CIPP.Alert) that the role editor doesn't surface - so expect the page's actions to fail for custom roles granted this permission alone. These two are effectively one feature and should be treated as inseparable until unified upstream.",
+    "BackendFunctions": {
+      "Read": [
+        "ListAuditLogCoverage",
+        "ListAuditLogSearches",
+        "ListAuditLogTest"
+      ],
+      "ReadWrite": [
+        "ExecAuditLogSearch",
+        "ExecWebhookSubscriptions"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/tenant/administration/alert-configuration",
+          "PageFile": "src/pages/tenant/administration/alert-configuration/index.js:35",
+          "NavPermission": "Tenant.Alert.*",
+          "Endpoint": "RemoveQueuedAlert",
+          "Kind": "action",
+          "BackendFunction": "RemoveQueuedAlert",
+          "BackendRole": "CIPP.Alert.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Tenant/Administration/Alerts/Invoke-RemoveQueuedAlert.ps1"
+        },
+        {
+          "Page": "/tenant/administration/alert-configuration",
+          "PageFile": "src/pages/tenant/administration/alert-configuration/index.js:50",
+          "NavPermission": "Tenant.Alert.*",
+          "Endpoint": "ListAlertsQueue",
+          "Kind": "read",
+          "BackendFunction": "ListAlertsQueue",
+          "BackendRole": "CIPP.Alert.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Tenant/Administration/Alerts/Invoke-ListAlertsQueue.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Application",
+    "NavSections": "Tenant Administration > Administration > Applications | Tenant Administration > Administration > App Consent Requests | Tenant Administration > Reports | Tenant Administration > Reports > Consented Applications | Tools | Tools > Tenant Tools > Application Approval",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/tenant/administration/applications/app-registration/index.jsx:47; src/pages/tenant/administration/applications/app-registration/permissions.jsx:23; src/pages/tenant/administration/applications/app-registrations.js:15; src/pages/tenant/administration/applications/enterprise-app/index.jsx:42; src/pages/tenant/administration/applications/enterprise-app/permissions.jsx:26; src/pages/tenant/administration/applications/enterprise-apps.js:17",
+    "NoneUsageRefs": "",
+    "Description": "Entra app registrations and enterprise applications administration, app consent requests, consented-applications report, and the Application Approval tool. One pairing quirk: the App Consent Requests page’s data call runs under Tenant.Administration.Read - grant that alongside for the page to load.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecAppApproval",
+        "ListAppApprovalTemplates",
+        "ListOAuthApps"
+      ],
+      "ReadWrite": [
+        "ExecAddMultiTenantApp",
+        "ExecAppApprovalTemplate",
+        "ExecApplication",
+        "ExecCreateAppTemplate",
+        "ExecManageAppCredentials",
+        "ExecServicePrincipals"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/tenant/administration/applications/enterprise-apps",
+        "/tenant/reports/application-consent"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/tenant/administration/app-consent-requests",
+          "PageFile": "src/pages/tenant/administration/app-consent-requests/index.js:20",
+          "NavPermission": "Tenant.Application.*",
+          "Endpoint": "ListAppConsentRequests",
+          "Kind": "read",
+          "BackendFunction": "ListAppConsentRequests",
+          "BackendRole": "Tenant.Administration.Read",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Tenant/Administration/Invoke-ListAppConsentRequests.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "BestPracticeAnalyser",
+    "NavSections": "Tenant Administration > Standards & Drift | Tenant Administration > Standards & Drift > Best Practice Analyser",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Standards & Drift's Best Practice Analyser results.",
+    "BackendFunctions": {
+      "Read": [
+        "BestPracticeAnalyser_List",
+        "ListBPA",
+        "ListBPATemplates",
+        "ListStandardsCompare"
+      ],
+      "ReadWrite": [
+        "AddBPATemplate",
+        "ExecBPA"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/tenant/standards/bpa-report",
+          "PageFile": "src/pages/tenant/standards/bpa-report/index.js:92",
+          "NavPermission": "Tenant.BestPracticeAnalyser.*",
+          "Endpoint": "RemoveBPATemplate",
+          "Kind": "action",
+          "BackendFunction": "RemoveBPATemplate",
+          "BackendRole": "Tenant.Standards.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Tenant/Standards/Invoke-RemoveBPATemplate.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "ConditionalAccess",
+    "NavSections": "Tenant Administration > Conditional Access | Tenant Administration > Conditional Access > CA Policies | Tenant Administration > Conditional Access > CA Vacation Mode | Tenant Administration > Conditional Access > CA Templates | Tenant Administration > Conditional Access > Named Locations",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/tenant/conditional/list-policies/index.js:23",
+    "NoneUsageRefs": "",
+    "Description": "Conditional Access policy administration: CA Policies, CA Vacation Mode, CA Templates, Named Locations.",
+    "BackendFunctions": {
+      "Read": [
+        "ExecCaCheck",
+        "ListCAtemplates",
+        "ListConditionalAccessPolicies",
+        "ListConditionalAccessPolicyChanges",
+        "ListNamedLocations"
+      ],
+      "ReadWrite": [
+        "AddCAPolicy",
+        "AddCATemplate",
+        "AddNamedLocation",
+        "EditCAPolicy",
+        "ExecCAExclusion",
+        "ExecCAServiceExclusion",
+        "ExecCreateCATemplate",
+        "ExecEditCAPolicyFull",
+        "ExecNamedLocation",
+        "RemoveCAPolicy",
+        "RemoveCATemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/tenant/conditional/list-named-locations",
+        "/tenant/conditional/list-policies"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/tenant/conditional/list-template",
+          "PageFile": "src/pages/tenant/conditional/list-template/index.js:49",
+          "NavPermission": "Tenant.ConditionalAccess.*",
+          "Endpoint": "ExecSetPackageTag",
+          "Kind": "action",
+          "BackendFunction": "ExecSetPackageTag",
+          "BackendRole": "CIPP.Core.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/CIPP/Core/Invoke-ExecSetPackageTag.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Config",
+    "NavSections": "Tenant Administration > Administration > Authentication Methods",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Tenant lifecycle configuration: adding and editing tenants, offboarding defaults, and replacement maps (write-only - it has no read-level functions). Despite the nav tagging, the Authentication Methods page it makes visible actually operates under Tenant.Administration.ReadWrite - grant that instead/alongside if a role needs to manage authentication methods.",
+    "BackendFunctions": {
+      "Read": [],
+      "ReadWrite": [
+        "AddTenant",
+        "EditTenant",
+        "EditTenantOffboardingDefaults",
+        "ExecCippReplacemap"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/tenant/administration/authentication-methods",
+          "PageFile": "src/pages/tenant/administration/authentication-methods/index.js:237",
+          "NavPermission": "Tenant.Config.*",
+          "Endpoint": "SetAuthMethod",
+          "Kind": "action",
+          "BackendFunction": "SetAuthMethod",
+          "BackendRole": "Tenant.Administration.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Tenant/Administration/Invoke-SetAuthMethod.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "DeviceCompliance",
+    "NavSections": "Security & Compliance | Security & Compliance > Reports | Security & Compliance > Reports > Device Compliance",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Cross-tenant device compliance reporting (surfaced under the Security & Compliance nav section despite the Tenant category name).",
+    "BackendFunctions": {
+      "Read": [
+        "ListAllTenantDeviceCompliance"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "BASELINE_OR_UNCHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Directory",
+    "NavSections": "Tenant Administration > Reports > Sherweb Licence Report",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Broad directory-data permission covering deleted directory object restore/purge (the Identity > Deleted Items page), inactive account reporting, Entra Connect status, licence data and reports (including Sherweb/CSP licences and CSP licence purchase), users-and-groups listing, and org messages. Easy to overlook because its nav footprint looks tiny (Sherweb Licence Report): any tier that includes deleted-item restore or licence reporting must also carry Tenant.Directory at the matching level.",
+    "BackendFunctions": {
+      "Read": [
+        "ListAzureADConnectStatus",
+        "ListCSPLicenses",
+        "ListCSPsku",
+        "ListDeletedItems",
+        "ListInactiveAccounts",
+        "ListLicenses",
+        "ListLicensesReport",
+        "ListUsersAndGroups"
+      ],
+      "ReadWrite": [
+        "ExecCSPLicense",
+        "ExecRestoreDeleted",
+        "ExecSendOrgMessage",
+        "RemoveDeletedObject"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/tenant/reports/list-csp-licenses"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "DomainAnalyser",
+    "NavSections": "Tenant Administration > Standards & Drift | Tenant Administration > Standards & Drift > Domains Analyser | Tools | Tools > Tenant Tools > Individual Domain Check",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Domain health analyser results and the individual domain check tool.",
+    "BackendFunctions": {
+      "Read": [
+        "DomainAnalyser_List",
+        "ListDomainAnalyser",
+        "ListDomainHealth"
+      ],
+      "ReadWrite": [
+        "ExecDomainAnalyser"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/tenant/standards/domains-analyser",
+          "PageFile": "src/pages/tenant/standards/domains-analyser/index.js:26",
+          "NavPermission": "Tenant.DomainAnalyser.*",
+          "Endpoint": "ExecDnsConfig",
+          "Kind": "action",
+          "BackendFunction": "ExecDnsConfig",
+          "BackendRole": "Tenant.Domains.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/CIPP/Settings/Invoke-ExecDnsConfig.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Relationship",
+    "NavSections": "Tenant Administration > Administration > Partner Relationships | Tenant Administration > GDAP Management",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Partner relationship (GDAP) management and the GDAP Management page.",
+    "BackendFunctions": {
+      "Read": [
+        "ListGDAPAccessAssignments",
+        "ListGDAPContracts",
+        "ListGDAPInvite",
+        "ListGDAPRelationships",
+        "ListGDAPRoles",
+        "ListGDAPServicePrincipals",
+        "ListPartnerRelationships",
+        "ListResellerRelationshipLink"
+      ],
+      "ReadWrite": [
+        "ExecAddGDAPRole",
+        "ExecAutoExtendGDAP",
+        "ExecDeleteGDAPRelationship",
+        "ExecDeleteGDAPRoleMapping",
+        "ExecGDAPAccessAssignment",
+        "ExecGDAPInvite",
+        "ExecGDAPInviteApproved",
+        "ExecGDAPRemoveGArole",
+        "ExecGDAPRepairRoleMappings",
+        "ExecGDAPRoleTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "BASELINE_OR_UNCHECKED",
+      "ConsistentPages": [],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Reports",
+    "NavSections": "Tenant Administration > Reports > Graph / Office Reports | Tenant Administration > Reports > Custom Test Report",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "",
+    "NoneUsageRefs": "",
+    "Description": "Generic Graph/Office 365 usage reports and the Custom Test report.",
+    "BackendFunctions": {
+      "Read": [
+        "ListGraphReports",
+        "ListTestReports",
+        "ListTestResultsTenants",
+        "ListTests"
+      ],
+      "ReadWrite": [],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "MISMATCHES_FOUND",
+      "ConsistentPages": [
+        "/tenant/reports/graph-office-reports"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": [
+        {
+          "Page": "/tenant/reports/custom-test-report",
+          "PageFile": "src/pages/tenant/reports/custom-test-report/index.js:125",
+          "NavPermission": "Tenant.Reports.*",
+          "Endpoint": "ExecCustomTestRun",
+          "Kind": "action",
+          "BackendFunction": "ExecCustomTestRun",
+          "BackendRole": "Tenant.Tests.ReadWrite",
+          "BackendFile": "Modules/CIPPHTTP/Public/Entrypoints/HTTP Functions/Invoke-ExecCustomTestRun.ps1"
+        }
+      ]
+    }
+  },
+  {
+    "Category": "Tenant",
+    "Object": "Standards",
+    "NavSections": "Tenant Administration > Standards & Drift | Tenant Administration > Standards & Drift > Standards Management | Copilot & AI | Copilot & AI > Shadow AI Discovery | Copilot & AI > Copilot Settings | Copilot & AI > Agent365 | Copilot & AI > Agent365 > Packages | Copilot & AI > Reports | Copilot & AI > Reports > Copilot Adoption | Copilot & AI > Reports > Copilot Usage Trend | Copilot & AI > Reports > Copilot User Activity",
+    "ReadUsageRefs": "",
+    "ReadWriteUsageRefs": "src/pages/tenant/standards/templates/index.js:26",
+    "NoneUsageRefs": "",
+    "Description": "CIPP's Standards & Drift engine: standards deployment/templates, drift monitoring and deviation management. Also bundles the entire Copilot & AI feature set (Copilot settings and usage reports, Shadow AI discovery and sanctioning, Agent365 packages) - the two share one permission with no backend separation, so Read grants visibility into Copilot/AI data and ReadWrite grants control over Copilot settings and AI governance. Splitting Copilot into its own grantable permission would require an upstream backend change.",
+    "BackendFunctions": {
+      "Read": [
+        "ListAgent365PackageDetail",
+        "ListAgent365Packages",
+        "ListCopilotSettings",
+        "ListCopilotUsage",
+        "ListShadowAI",
+        "ListStandards",
+        "ListStandardsCurrentState",
+        "ListTenantAlignment",
+        "ListTenantDrift",
+        "listStandardTemplates"
+      ],
+      "ReadWrite": [
+        "AddStandardsDeploy",
+        "AddStandardsTemplate",
+        "ExecCopilotSettings",
+        "ExecDriftClone",
+        "ExecShadowAISanction",
+        "ExecStandardConvert",
+        "ExecStandardsRun",
+        "ExecUpdateDriftDeviation",
+        "RemoveBPATemplate",
+        "RemoveStandard",
+        "RemoveStandardTemplate"
+      ],
+      "Other": {}
+    },
+    "CrossCheck": {
+      "Status": "CONSISTENT",
+      "ConsistentPages": [
+        "/copilot/agent365/packages",
+        "/copilot/reports/copilot-adoption",
+        "/copilot/reports/copilot-trend",
+        "/copilot/reports/copilot-usage",
+        "/copilot/settings",
+        "/copilot/shadow-ai",
+        "/tenant/standards/alignment"
+      ],
+      "BaselineOnlyPages": [],
+      "Mismatches": []
+    }
+  }
+]

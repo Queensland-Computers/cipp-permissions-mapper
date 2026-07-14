@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-07-14T06:11:32.711Z",
+  "cipp": {
+    "path": "D:\\projects\\devops\\CIPP",
+    "commit": "6138cf5de",
+    "commitDate": "2026-07-10T16:58:49+02:00",
+    "version": "10.6.0",
+    "dirty": true
+  },
+  "cippApi": {
+    "path": "D:\\projects\\devops\\CIPP-API",
+    "commit": "fd23ff2",
+    "commitDate": "2026-07-10T16:59:27+02:00",
+    "version": "10.6.0",
+    "dirty": true
+  }
+}

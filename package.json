@@ -1,0 +1,23 @@
+{
+  "name": "cipp-permissions-mapper",
+  "version": "1.0.0",
+  "description": "Maps every CIPP Category.Object permission to the UI it unlocks and the CIPP-API functions it governs, with a frontend/backend enforcement cross-check. Renders the CIPP Permissions Catalog.",
+  "author": "Matthew Gray <101441644+scorching-gray@users.noreply.github.com> (https://github.com/Queensland-Computers)",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Queensland-Computers/cipp-permissions-mapper.git"
+  },
+  "homepage": "https://github.com/Queensland-Computers/cipp-permissions-mapper#readme",
+  "bugs": {
+    "url": "https://github.com/Queensland-Computers/cipp-permissions-mapper/issues"
+  },
+  "private": true,
+  "scripts": {
+    "build": "node scripts/run-pipeline.js",
+    "verify": "node scripts/verify-output.js ."
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

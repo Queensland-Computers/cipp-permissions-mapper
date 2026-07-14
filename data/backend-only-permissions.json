@@ -1,0 +1,114 @@
+[
+  {
+    "CategoryObject": "CIPP.Alert",
+    "Read": [
+      "Invoke-ListAlertResults",
+      "Invoke-ListSnoozedAlerts",
+      "Invoke-ListPendingWebhooks",
+      "Invoke-ListAlertsQueue",
+      "Invoke-ListAuditLogs",
+      "Invoke-ListWebhookAlert"
+    ],
+    "ReadWrite": [
+      "Invoke-ExecAddAlert",
+      "Invoke-ExecRemoveSnooze",
+      "Invoke-ExecSnoozeAlert",
+      "Invoke-RemoveWebhookAlert",
+      "Invoke-AddAlert",
+      "Invoke-AddScriptedAlert",
+      "Invoke-RemoveQueuedAlert"
+    ],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "CIPP.Dashboard",
+    "Read": [
+      "Invoke-AddTestReport",
+      "Invoke-DeleteTestReport",
+      "Invoke-ListAvailableTests"
+    ],
+    "ReadWrite": [],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Endpoint.Security",
+    "Read": [
+      "Invoke-ListCVEManagement"
+    ],
+    "ReadWrite": [],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Exchange.Groups",
+    "Read": [
+      "Invoke-ListGroupSenderAuthentication"
+    ],
+    "ReadWrite": [],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Exchange.Spamfilter",
+    "Read": [],
+    "ReadWrite": [
+      "Invoke-AddQuarantinePolicy",
+      "Invoke-AddSpamFilterTemplate",
+      "Invoke-EditQuarantinePolicy",
+      "Invoke-RemoveQuarantinePolicy",
+      "Invoke-RemoveSpamfilter",
+      "Invoke-RemoveSpamfilterTemplate"
+    ],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Identity.DirSync",
+    "Read": [],
+    "ReadWrite": [
+      "Invoke-ExecSetCloudManaged"
+    ],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Teams.SharePoint",
+    "Read": [],
+    "ReadWrite": [
+      "Invoke-ExecSetOneDriveSharing"
+    ],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Tenant.ApplicationTemplates",
+    "Read": [],
+    "ReadWrite": [
+      "Invoke-ExecAppPermissionTemplate"
+    ],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Tenant.Domains",
+    "Read": [],
+    "ReadWrite": [
+      "Invoke-ExecDnsConfig"
+    ],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Tenant.Groups",
+    "Read": [],
+    "ReadWrite": [
+      "Invoke-ExecCreateDefaultGroups",
+      "Invoke-ExecRunTenantGroupRule",
+      "Invoke-ExecTenantGroup"
+    ],
+    "Other": {}
+  },
+  {
+    "CategoryObject": "Tenant.Tests",
+    "Read": [],
+    "ReadWrite": [
+      "Invoke-ExecCustomTestRun",
+      "Invoke-ExecTestRefresh",
+      "Invoke-ExecTestRun"
+    ],
+    "Other": {}
+  }
+]

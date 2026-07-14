@@ -1,0 +1,57 @@
+# Optional drift detector: runs the deterministic pipeline against upstream HEAD and
+# fails when the published catalog has drifted (new/removed/stale permissions, or a
+# tripwire firing because upstream conventions changed). A red run means "regenerate
+# the catalog" - see README.md. On failure it files (or comments on) a tracking issue
+# with the description todo list embedded.
+name: drift-check
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 1 * *' # monthly
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Clone upstream repos
+        run: |
+          git clone --depth 1 https://github.com/KelvinTegelaar/CIPP ../CIPP
+          git clone --depth 1 https://github.com/KelvinTegelaar/CIPP-API ../CIPP-API
+      - name: Run pipeline (fails on drift or tripwire)
+        run: node scripts/run-pipeline.js
+      - name: Show description todo on failure
+        if: failure()
+        run: cat output/descriptions-todo.json || true
+      - name: File or update drift issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "The scheduled drift check failed: upstream CIPP/CIPP-API has drifted from the published catalog, or a tripwire fired because an upstream convention changed."
+            echo
+            echo "Failed run: $RUN_URL"
+            echo
+            echo "Description todo list (empty categories = likely a tripwire; check the run log):"
+            echo '```json'
+            cat output/descriptions-todo.json 2>/dev/null || echo "(not written - the pipeline aborted before the gap analysis; check the run log for a TRIPWIRE message)"
+            echo
+            echo '```'
+            echo
+            echo "To resolve: regenerate the catalog locally (see README), push the update, and close this issue."
+          } > /tmp/issue-body.md
+          EXISTING=$(gh issue list --state open --search 'Drift check failed in:title' --json number --jq '.[0].number')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file /tmp/issue-body.md
+          else
+            gh issue create --title 'Drift check failed: catalog needs regeneration' --body-file /tmp/issue-body.md
+          fi
