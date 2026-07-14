@@ -3,7 +3,7 @@
 # tripwire firing because upstream conventions changed). A red run means "regenerate
 # the catalog" - see README.md. On failure it files (or comments on) a tracking issue
 # with the description todo list embedded.
-name: drift-check
+name: CIPP Permission Drift Check
 on:
   workflow_dispatch:
   schedule:
