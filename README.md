@@ -1,7 +1,7 @@
 # CIPP Permissions Mapper
 
 [![drift-check](https://github.com/Queensland-Computers/cipp-permissions-mapper/actions/workflows/drift-check.yml/badge.svg)](https://github.com/Queensland-Computers/cipp-permissions-mapper/actions/workflows/drift-check.yml)
-![Node.js >=18](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
+![Node.js >=18](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
 
 Maps every [CIPP](https://github.com/KelvinTegelaar/CIPP) `Category.Object` permission to
