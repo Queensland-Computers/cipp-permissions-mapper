@@ -15,7 +15,7 @@ This is a commit test message.
 
 **The catalog: [`cipp-permissions-catalog.html`](cipp-permissions-catalog.html)** - one
 self-contained page, filterable, with an anchor per permission. GitHub won't render HTML in
-the repo view, so download it, or visit [GitHub Pages Link to Come].
+the repo view, so download it, or visit [CIPP Permissions Catalog](https://queensland-computers.github.io/cipp-permissions-mapper/).
 
 The same matrix also ships as [markdown](data/permissions-catalog.md),
 [CSV](data/permissions-catalog.csv), and machine-readable JSON
